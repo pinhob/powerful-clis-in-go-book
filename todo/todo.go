@@ -1,6 +1,9 @@
 package todo
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type item struct {
 	Task        string
@@ -20,4 +23,16 @@ func (l *List) Add(task string) {
 	}
 
 	*l = append(*l, item)
+}
+
+func (l *List) Complete(itemNumber int) error {
+	list := *l
+	if itemNumber <= 0 || itemNumber >= len(list) {
+		return fmt.Errorf("item %d does not exist", itemNumber)
+	}
+
+	list[itemNumber-1].Done = true
+	list[itemNumber-1].CompletedAt = time.Now()
+
+	return nil
 }
