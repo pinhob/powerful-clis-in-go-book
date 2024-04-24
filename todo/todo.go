@@ -36,3 +36,15 @@ func (l *List) Complete(itemNumber int) error {
 
 	return nil
 }
+
+func (l *List) Delete(itemNumber int) error {
+	list := *l
+
+	if itemNumber <= 0 || itemNumber > len(list) {
+		return fmt.Errorf("item %d does not exist", itemNumber)
+	}
+
+	*l = append(list[:itemNumber-1], list[itemNumber:]...)
+
+	return nil
+}
