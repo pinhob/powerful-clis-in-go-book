@@ -39,3 +39,21 @@ func TestComplete(t *testing.T) {
 		t.Errorf("got %v, want %v", got, want)
 	}
 }
+
+func TestDelete(t *testing.T) {
+	list := List{}
+	task := "todo"
+	taskNumber := 1
+
+	list.Add(task)
+
+	if len(list) != 1 {
+		t.Errorf("list should have the length of 1, but got length of %d", len(list))
+	}
+
+	list.Delete(taskNumber)
+
+	if len(list) != 0 {
+		t.Errorf("list should have the length of 0, but got length of %d", len(list))
+	}
+}
