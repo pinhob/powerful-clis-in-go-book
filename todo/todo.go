@@ -27,7 +27,7 @@ func (l *List) Add(task string) {
 
 func (l *List) Complete(itemNumber int) error {
 	list := *l
-	if itemNumber <= 0 || itemNumber >= len(list) {
+	if itemNumber <= 0 || itemNumber > len(list) {
 		return fmt.Errorf("item %d does not exist", itemNumber)
 	}
 
