@@ -1,11 +1,12 @@
-package todo
+package todo_test
 
 import (
 	"testing"
+	"todo"
 )
 
 func TestAdd(t *testing.T) {
-	list := List{}
+	list := todo.List{}
 	task := "todo"
 
 	list.Add(task)
@@ -16,7 +17,7 @@ func TestAdd(t *testing.T) {
 }
 
 func TestComplete(t *testing.T) {
-	list := List{}
+	list := todo.List{}
 	task := "todo"
 	taskNumber := 1
 
@@ -41,7 +42,7 @@ func TestComplete(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	list := List{}
+	list := todo.List{}
 	task := "todo"
 	taskNumber := 1
 
