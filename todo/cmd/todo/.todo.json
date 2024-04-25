@@ -1,1 +1,0 @@
-[{"Task":"item from args","Done":false,"CreatedAt":"2024-04-25T18:39:03.089346136-03:00","CompletedAt":"0001-01-01T00:00:00Z"},{"Task":"this item is from stdin","Done":true,"CreatedAt":"2024-04-25T18:39:27.866872676-03:00","CompletedAt":"2024-04-25T18:39:38.322928474-03:00"}]

@@ -103,4 +103,21 @@ func TestTodoCLI(t *testing.T) {
 			t.Errorf("Expected no return, got %v", out)
 		}
 	})
+
+	t.Run("delete first task", func(t *testing.T) {
+		cmd := exec.Command(cmdPath, "-del", "1")
+		if err := cmd.Run(); err != nil {
+			t.Fatal(err)
+		}
+
+		cmdList := exec.Command(cmdPath, "-list")
+		out, err := cmdList.CombinedOutput()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if len(out) == 1 {
+			t.Errorf("List expected to be empty, but got %v", string(out))
+		}
+	})
 }
