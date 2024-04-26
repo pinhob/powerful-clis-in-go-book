@@ -28,6 +28,7 @@ func main() {
 	add := flag.Bool("add", false, "add a to-do to the list")
 	del := flag.Int("del", 0, "Item to be deleted")
 	listTasks := flag.Bool("list", false, "List all tasks")
+	verb := flag.Bool("verb", false, "List all tasks with the date")
 	complete := flag.Int("complete", 0, "Item to be completed")
 
 	flag.Parse()
@@ -78,9 +79,15 @@ func main() {
 			os.Exit(1)
 		}
 
-	case len(os.Args) == 1:
-		for _, item := range *list {
-			fmt.Println(item.Task)
+	case *verb:
+		for k, item := range *list {
+			prefix := ""
+
+			if item.Done {
+				prefix = "X "
+			}
+
+			fmt.Printf("%s %d: %s | %s\n", prefix, k+1, item.Task, item.CreatedAt.UTC().Local())
 		}
 
 	default:
