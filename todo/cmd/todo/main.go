@@ -20,8 +20,10 @@ func main() {
 	flag.Usage = func() {
 		fmt.Fprintf(flag.CommandLine.Output(),
 			"%s tool. Developed following the book Powerful CLIs in Go\n", os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), "Tasks can be added using the commands `./todo -add + task name` or `echo task name' | ./ todo -add`\n")
 		fmt.Fprintf(flag.CommandLine.Output(), "Copyright 2024\n")
-		fmt.Fprintf(flag.CommandLine.Output(), "Usage information:")
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage information:\n")
+
 		flag.PrintDefaults()
 	}
 
