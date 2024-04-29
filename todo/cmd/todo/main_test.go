@@ -124,6 +124,20 @@ func TestTodoCLI(t *testing.T) {
 		}
 	})
 
+	t.Run("list tasks not completed", func(t *testing.T) {
+		cmd := exec.Command(cmdPath, "-lnc")
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		expected := fmt.Sprintf("  1: %s\n", task2)
+
+		if expected != string(out) {
+			t.Errorf("Expected %q, got %q instead\n", expected, string(out))
+		}
+	})
+
 	t.Run("delete first task", func(t *testing.T) {
 		cmd := exec.Command(cmdPath, "-del", "1")
 		if err := cmd.Run(); err != nil {

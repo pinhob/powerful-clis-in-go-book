@@ -29,6 +29,7 @@ func main() {
 	del := flag.Int("del", 0, "Item to be deleted")
 	listTasks := flag.Bool("list", false, "List all tasks")
 	verb := flag.Bool("verb", false, "List all tasks with the date")
+	listNonComplete := flag.Bool("lnc", false, "List all tasks not completed")
 	complete := flag.Int("complete", 0, "Item to be completed")
 
 	flag.Parse()
@@ -89,6 +90,17 @@ func main() {
 
 			fmt.Printf("%s %d: %s | %s\n", prefix, k+1, item.Task, item.CreatedAt.UTC().Local())
 		}
+
+	case *listNonComplete:
+		listWithoutComplete := list
+
+		for k, item := range *listWithoutComplete {
+			if item.Done {
+				listWithoutComplete.Delete(k + 1)
+			}
+		}
+
+		fmt.Print(listWithoutComplete)
 
 	default:
 		fmt.Fprintln(os.Stderr, "Invalid option")
