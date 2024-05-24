@@ -33,7 +33,7 @@ func main() {
 	}
 
 	if err := run(*filename); err != nil {
-		fmt.Fprintln(os.Stderr, "got error running the file: %v", err)
+		fmt.Fprintf(os.Stderr, "got error running the file: %s", err)
 		os.Exit(1)
 	}
 }
