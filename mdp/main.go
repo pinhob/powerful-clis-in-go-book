@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"path/filepath"
 
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday/v2"
@@ -47,7 +46,15 @@ func run(filename string) error {
 
 	htmlData := parseContent(input)
 
-	outName := fmt.Sprintf("%s.html", filepath.Base(filename))
+	temp, err := os.CreateTemp("", "mdp*.html")
+	if err != nil {
+		return err
+	}
+	if err := temp.Close(); err != nil {
+		return err
+	}
+
+	outName := temp.Name()
 	fmt.Println(outName)
 
 	return saveHTML(outName, htmlData)
