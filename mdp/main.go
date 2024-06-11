@@ -26,6 +26,7 @@ const (
 
 func main() {
 	filename := flag.String("file", "", "Markdown file preview")
+	flag.Parse()
 
 	if *filename == "" {
 		flag.Usage()
